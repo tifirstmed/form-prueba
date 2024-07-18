@@ -108,7 +108,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           DORMILON M
         </h1>
       </div>
-      <div className="mt-[28px] md:mt-[50px] flex flex-col w-[318px] sm:w-[540px] ml-[55px] md:ml-[40px] lg:ml-[34px] xl:ml-[40px]">
+      <div className="mt-[28px] md:mt-[50px] flex flex-col w-[318px] sm:w-[540px] ml-[45px] md:ml-[40px] lg:ml-[34px] xl:ml-[40px]">
         <p className="text-[16px] sm:text-[26px] text-[#6CA936] font-normal leading-5 mb-0">
           Deja tus datos y
         </p>
@@ -116,7 +116,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           te contactaremos en breves minutos
         </p>
       </div>
-      <div className="flex flex-col space-y-2 md:space-y-3 ml-[55px] mr-[35px] md:mx-10">
+      <div className="flex flex-col space-y-2 md:space-y-3 ml-[45px] mr-[35px] md:mx-10">
         <div className="flex flex-col lg:flex-row justify-center w-full mt-[28px] lg:mt-[38px] md:gap-[10px] h-[64px] lg:h-[38px] gap-y-2">
           <div className="flex flex-col h-[32px] md:h-[38px] w-full">
             <input
