@@ -2,12 +2,14 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "./userScheema";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { initFacebookPixel } from "@/app/utils/facebookPixel";
 import { trackFacebookEvent } from "@/app/utils/facebookPixel";
 import { initGA, logPageView } from "@/app/utils/ga";
 import { logEvent } from "@/app/utils/ga";
+import { RegisterFormProps } from "./RegisterForm.type";
+import CompletedForm from "../CompletedForm/CompletedForm";
 
 type User = {
   name: string;
@@ -20,7 +22,10 @@ type User = {
 
 let isFacebookPixelInitialized = false;
 
-const RegisterForm: React.FC = () => {
+const RegisterForm: React.FC<RegisterFormProps> = ({
+  viewModal,
+  setViewModal,
+}) => {
   const {
     register,
     handleSubmit,
@@ -51,6 +56,7 @@ const RegisterForm: React.FC = () => {
         // Llama al evento 'CompleteRegistration' de Facebook Pixel
         trackFacebookEvent("CompleteRegistration");
         logEvent("Form", "Submit");
+        setFormCompleted(true);
         console.log("Datos enviados correctamente a Bitrix24");
         // Aquí podrías redirigir o mostrar un mensaje de éxito
       } else {
@@ -90,17 +96,19 @@ const RegisterForm: React.FC = () => {
     };
   }, [router]);
 
+  const [formCompleted, setFormCompleted] = useState(false);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-[574px] h-[605px] w-full bg-[#FFFFFF]"
+      className="max-w-[574px] h-[605px] w-full bg-[#FFFFFF] rounded-lg font-sans relative"
     >
-      <div className="h-[26px] md:h-[38px] bg-black w-full md:w-[574px] flex justify-center items-center">
-        <h1 className="text-white font-semibold text-lg md:text-xl text-center">
+      <div className="h-[26px] md:h-[38px] bg-black w-full md:w-[574px] flex justify-center items-center rounded-t-lg">
+        <h1 className="text-white font-semibold text-base md:text-xl text-center">
           DORMILON M
         </h1>
       </div>
-      <div className="mt-[28px] md:mt-[50px] ml-[35px] sm:ml-[55px] md:ml-[46px]">
+      <div className="mt-[28px] md:mt-[50px] ml-[40px] sm:ml-[55px] md:ml-[46px]">
         <p className="text-[17px] md:text-[26px] text-[#6CA936] font-normal leading-5 mb-0">
           Deja tus datos y
         </p>
@@ -108,85 +116,106 @@ const RegisterForm: React.FC = () => {
           te contactaremos en breves minutos
         </p>
       </div>
-      <div className="flex flex-col space-y-3 mx-11">
-        <div className="flex justify-center mt-[38px] gap-[10px] h-[38px]">
-          <div className="flex flex-col">
+      <div className="flex flex-col space-y-2 md:space-y-3 mx-14 lg:mx-11">
+        <div className="flex flex-col lg:flex-row justify-center w-full mt-[28px] lg:mt-[38px] md:gap-[10px] h-[64px] lg:h-[38px] gap-y-2">
+          <div className="flex flex-col h-[32px] md:h-[38px] w-full">
             <input
               placeholder="Nombres"
-              className="border border-black px-2 rounded-[10px] focus:outline-black h-full"
+              className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] lg:h-full text-sm md:text-base"
               id="name"
               {...register("name")}
             />
             {errors.name && (
-              <span className="text-red-500">{errors.name.message}</span>
+              <span className="text-red-500 text-xs">
+                {errors.name.message}
+              </span>
             )}
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col h-[32px] lg:h-[38px] w-full">
             <input
               placeholder="Apellidos"
-              className="border border-black px-2 rounded-[10px] focus:outline-black h-full"
+              className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] lg:h-full text-sm md:text-base"
               id="lastname"
               {...register("lastname")}
             />
             {errors.lastname && (
-              <span className="text-red-500">{errors.lastname.message}</span>
+              <span className="text-red-500 text-xs">
+                {errors.lastname.message}
+              </span>
             )}
           </div>
         </div>
-        <div className="flex flex-col h-[38px]">
+        <div className="flex flex-col h-[32px] lg:h-[38px]">
           <input
             placeholder="Celular"
-            className="border border-black px-2 rounded-[10px] focus:outline-black h-full"
+            className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] md:h-full text-sm md:text-base"
             id="phoneNumber"
             {...register("phoneNumber")}
           />
           {errors.phoneNumber && (
-            <span className="text-red-500">{errors.phoneNumber.message}</span>
+            <span className="text-red-500 text-xs">
+              {errors.phoneNumber.message}
+            </span>
           )}
         </div>
-        <div className="flex flex-col h-[38px]">
+        <div className="flex flex-col h-[32px] lg:h-[38px]">
           <input
             placeholder="Correo electrónico"
-            className="border border-black px-2 rounded-[10px] focus:outline-black h-full"
+            className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] md:h-full text-sm md:text-base"
             id="email"
             {...register("email")}
           />
           {errors.email && (
-            <span className="text-red-500">{errors.email.message}</span>
+            <span className="text-red-500 text-xs">{errors.email.message}</span>
           )}
         </div>
         <div className="flex flex-col">
           <textarea
             placeholder="¿Qué desea tratar?"
             rows={5}
-            className="border border-black px-2 rounded-[10px] focus:outline-black resize-none"
+            className="border border-black px-2 rounded-[10px] focus:outline-black resize-none text-sm md:text-base"
             id="description"
             {...register("description")}
           />
           {errors.description && (
-            <span className="text-red-500">{errors.description.message}</span>
+            <span className="text-red-500 text-xs">
+              {errors.description.message}
+            </span>
           )}
         </div>
         <div className="flex flex-col">
-          <label className="text-sm" htmlFor="acceptTerms">
+          <label
+            className="text-[11px] md:text-sm flex gap-2"
+            htmlFor="acceptTerms"
+          >
             <input
               id="acceptTerms"
               type="checkbox"
               {...register("acceptTerms")}
             />
-            {"  "}Al enviar, acepto las políticas de Privacidad
+            <p
+              onClick={() => {
+                setViewModal(true);
+              }}
+              className="cursor-pointer"
+            >
+              Al enviar, acepto las políticas de Privacidad
+            </p>
           </label>
           {errors.acceptTerms && (
-            <span className="text-red-500">{errors.acceptTerms.message}</span>
+            <span className="text-red-500 text-xs">
+              {errors.acceptTerms.message}
+            </span>
           )}
         </div>
         <button
-          className="w-full h-10 bg-[#6CA936] text-[#FFFFFF] font-semibold rounded-[10px] text-center"
+          className="w-full h-10 bg-[#6CA936] text-[#FFFFFF] font-semibold rounded-[10px] text-center text-sm md:text-base"
           type="submit"
         >
           ENVIAR
         </button>
       </div>
+      {formCompleted && <CompletedForm formCompleted={formCompleted} />}
     </form>
   );
 };
