@@ -101,22 +101,22 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-[574px] h-[605px] w-full bg-[#FFFFFF] rounded-lg font-sans relative"
+      className="max-w-[576px] h-[476px] md:h-[607px] w-full bg-[#FFFFFF] rounded-lg font-sans relative"
     >
-      <div className="h-[26px] md:h-[38px] bg-black w-full md:w-[574px] flex justify-center items-center rounded-t-lg">
+      <div className="h-[26px] md:h-[38px] bg-black w-full md:w-[574px] flex justify-center items-center lg:rounded-t-lg">
         <h1 className="text-white font-semibold text-base md:text-xl text-center">
           DORMILON M
         </h1>
       </div>
-      <div className="mt-[28px] md:mt-[50px] ml-[40px] sm:ml-[55px] md:ml-[46px]">
-        <p className="text-[17px] md:text-[26px] text-[#6CA936] font-normal leading-5 mb-0">
+      <div className="mt-[28px] md:mt-[50px] flex flex-col w-[318px] sm:w-[540px] ml-[55px] md:ml-[40px] lg:ml-[34px] xl:ml-[40px]">
+        <p className="text-[16px] sm:text-[26px] text-[#6CA936] font-normal leading-5 mb-0">
           Deja tus datos y
         </p>
-        <p className="text-[17px] md:text-[26px] text-[#6CA936] font-semibold leading-6 mt-0">
+        <p className="text-[16px] sm:text-[26px] text-[#6CA936] font-semibold leading-6 mt-0">
           te contactaremos en breves minutos
         </p>
       </div>
-      <div className="flex flex-col space-y-2 md:space-y-3 mx-14 lg:mx-11">
+      <div className="flex flex-col space-y-2 md:space-y-3 ml-[55px] mr-[35px] md:mx-10">
         <div className="flex flex-col lg:flex-row justify-center w-full mt-[28px] lg:mt-[38px] md:gap-[10px] h-[64px] lg:h-[38px] gap-y-2">
           <div className="flex flex-col h-[32px] md:h-[38px] w-full">
             <input
@@ -193,14 +193,17 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               type="checkbox"
               {...register("acceptTerms")}
             />
-            <p
-              onClick={() => {
-                setViewModal(true);
-              }}
-              className="cursor-pointer"
-            >
-              Al enviar, acepto las políticas de Privacidad
-            </p>
+            <div className="flex">
+              <p>Al enviar,</p>
+              <p
+                onClick={() => {
+                  setViewModal(true);
+                }}
+                className="underline cursor-pointer"
+              >
+                acepto las políticas de Privacidad
+              </p>
+            </div>
           </label>
           {errors.acceptTerms && (
             <span className="text-red-500 text-xs">

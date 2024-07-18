@@ -17,10 +17,10 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
           className={`w-full bg-white p-4 rounded-t-lg max-w-[600px] max-h-[800px] overflow-y-scroll `}
           onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
         >
-          <div className="sticky top-0 flex justify-end bg-transparent">
+          <div className="sticky top-8 lg:top-0 flex justify-end bg-transparent">
             <button
               onClick={() => setViewModal(false)}
-              className="w-7 h-7 rounded-full bg-green-500/70 z-20 text-white transition-all hover:bg-green-700 hover:delay-100"
+              className="w-7 h-7 rounded-full bg-[#6da936]/70 z-20 text-white transition-all hover:bg-[#318134] hover:delay-100"
             >
               X
             </button>
@@ -58,7 +58,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               el tratamiento de sus datos personales de acuerdo a los términos
               establecidos en la presente Política de Privacidad.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>Marco normativo y principios rectores</strong>
               <br />
@@ -73,7 +73,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               <br />• Ley No. 29571, Código de Protección y Defensa del
               Consumidor.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>¿Qué información recolectamos?</strong>
               <br />
@@ -121,7 +121,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               identidad, número de celular, número de teléfono fijo, dirección
               de domicilio y correo electrónico.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>¿Para qué utilizamos la Información del Usuario?</strong>
               <br />
@@ -165,7 +165,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               relación contractual que vincula al Usuario con Firstmed no
               requieren de su consentimiento y sólo de ser informado al Usuario.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>Carácter de la información</strong>
               <br />
@@ -175,7 +175,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               tratamiento, no podrá acceder a los servicios descritos en el
               presente documento.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>
                 Bancos de datos personales y plazo de conservación.
@@ -200,7 +200,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               luego de los cuales serán eliminados en cumplimiento con la Ley y
               normativa aplicable.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>Sobre la veracidad de los Datos Personales</strong>
               <br />
@@ -217,7 +217,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               asume responsabilidad alguna por posibles daños o perjuicios que
               pudieran originarse por el uso de dicha información.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>¿Cómo resguardamos la Información del Usuario?</strong>
               <br />
@@ -245,7 +245,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               el Centro de Procesos de Datos, en el sistema de Internet o en
               otros sistemas electrónicos.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>Divulgación</strong>
               <br />
@@ -286,7 +286,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               terceros que utilicen cookies; Firstmed no se hace responsable del
               uso de cookies por parte de dichos terceros.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>Edad de Consentimiento</strong>
               <br />
@@ -301,7 +301,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               autorización de su tutor legal, se adoptarán las medidas oportunas
               para eliminarlos.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>Cesión de Posición Contractual</strong>
               <br />
@@ -316,7 +316,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               la presente Política respecto al tratamiento, resguardo y
               conservación de la información anteriormente detallada.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
             <p className="text-xs md:text-sm">
               <strong>Modificaciones de la Política de Privacidad</strong>
               <br />
@@ -329,8 +329,8 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               bajo qué circunstancias, y se solicitará el consentimiento al
               acceder nuevamente a dichos servicios.
             </p>
-            <hr className="w-full h-[2px] bg-black my-1" />
-            <p className="text-xs md:text-sm">
+            <hr className="w-full h-[2px] bg-gray-200 my-1" />
+            <p className="text-xs md:text-sm pb-12 md:pb-5">
               <strong>Fecha de última actualización: junio 2024.</strong>
             </p>
           </div>

@@ -13,10 +13,10 @@ const CompletedForm: React.FC<CompletedFormProps> = ({ formCompleted }) => {
       className={`w-full h-full bg-[#6CA936] absolute top-0 rounded-lg`}
     >
       <div className="flex justify-center items-center h-full">
-        <p className="text-white text-lg lg:text-3xl text-center select-none">
-          <strong>¡Muchas gracias!</strong>
+        <p className="text-white text-center select-none font-sans">
+          <strong className="text-[26px]">¡Muchas gracias!</strong>
           <br />
-          Uno de nuestros asesores te contactará
+          <p className="text-xl">Uno de nuestros asesores te contactará</p>
         </p>
       </div>
     </motion.div>
