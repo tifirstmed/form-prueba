@@ -1,15 +1,15 @@
-'use client';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { userSchema } from './userScheema';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { initFacebookPixel } from '@/app/utils/facebookPixel';
-import { trackFacebookEvent } from '@/app/utils/facebookPixel';
-import { initGA, logPageView } from '@/app/utils/ga';
-import { logEvent } from '@/app/utils/ga';
-import { RegisterFormProps } from './RegisterForm.type';
-import CompletedForm from '../CompletedForm/CompletedForm';
+"use client";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userSchema } from "./userScheema";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { initFacebookPixel } from "@/app/utils/facebookPixel";
+import { trackFacebookEvent } from "@/app/utils/facebookPixel";
+import { initGA, logPageView } from "@/app/utils/ga";
+import { logEvent } from "@/app/utils/ga";
+import { RegisterFormProps } from "./RegisterForm.type";
+import CompletedForm from "../CompletedForm/CompletedForm";
 
 type User = {
   name: string;
@@ -42,29 +42,49 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       email: data.email,
       description: data.description,
     };
-    trackFacebookEvent('Lead', formattedData);
+    trackFacebookEvent("Lead", formattedData);
     try {
-      const response = await fetch('/api/create-lead', {
-        method: 'POST',
+      const response = await fetch("/api/create-lead", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formattedData),
       });
 
       if (response.status === 200) {
         // Llama al evento 'CompleteRegistration' de Facebook Pixel
-        trackFacebookEvent('CompleteRegistration');
-        logEvent('Form', 'Submit');
+        trackFacebookEvent("CompleteRegistration");
+        logEvent("Form", "Submit");
         setFormCompleted(true);
-        console.log('Datos enviados correctamente a Bitrix24');
+        console.log("Datos enviados correctamente a Bitrix24");
         // Aquí podrías redirigir o mostrar un mensaje de éxito
       } else {
-        console.log('Error al enviar los datos a Bitrix24');
+        console.log("Error al enviar los datos a Bitrix24");
         // Manejar el caso de error según sea necesario
       }
     } catch (error) {
       console.log(error);
+    }
+
+    const formattedDataTrack = {
+      name: formattedData.name,
+      email: formattedData.email,
+      phone: formattedData.phone,
+    };
+    try {
+      const response_track = await fetch("/api/track-event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formattedDataTrack),
+      });
+
+      const data_track = await response_track.json();
+      console.log("Success:", data_track);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -79,12 +99,30 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       isFacebookPixelInitialized = true;
 
       // Envía el evento de vista de contenido
-      trackFacebookEvent('ViewContent');
+      trackFacebookEvent("ViewContent");
+
+      // Realiza la solicitud al endpoint /api/track-event-view
+      const trackEventView = async () => {
+        try {
+          const response_track = await fetch("/api/track-event-view", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          const data_track = await response_track.json();
+          console.log("Success registrada Vista!:", data_track);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+      trackEventView();
     }
 
     // Función para suscribirse a cambios de ruta
     const subscribeToRouteChanges = () => {
-      router.push('/');
+      router.push("/");
     };
 
     // Llama a la función de suscripción al cargar la aplicación
@@ -123,7 +161,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Nombres"
               className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] lg:h-full text-sm md:text-base"
               id="name"
-              {...register('name')}
+              {...register("name")}
             />
             {errors.name && (
               <span className="text-red-500 text-xs">
@@ -136,7 +174,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               placeholder="Apellidos"
               className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] lg:h-full text-sm md:text-base"
               id="lastname"
-              {...register('lastname')}
+              {...register("lastname")}
             />
             {errors.lastname && (
               <span className="text-red-500 text-xs">
@@ -150,7 +188,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             placeholder="Celular"
             className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] md:h-full text-sm md:text-base"
             id="phoneNumber"
-            {...register('phoneNumber')}
+            {...register("phoneNumber")}
           />
           {errors.phoneNumber && (
             <span className="text-red-500 text-xs">
@@ -163,7 +201,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             placeholder="Correo electrónico"
             className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] md:h-full text-sm md:text-base"
             id="email"
-            {...register('email')}
+            {...register("email")}
           />
           {errors.email && (
             <span className="text-red-500 text-xs">{errors.email.message}</span>
@@ -175,7 +213,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             rows={5}
             className="border border-black px-2 rounded-[10px] focus:outline-black resize-none text-sm md:text-base"
             id="description"
-            {...register('description')}
+            {...register("description")}
           />
           {errors.description && (
             <span className="text-red-500 text-xs">
@@ -191,7 +229,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             <input
               id="acceptTerms"
               type="checkbox"
-              {...register('acceptTerms')}
+              {...register("acceptTerms")}
             />
             <div className="flex">
               <p>Al enviar,</p>

@@ -17,7 +17,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
           className={`w-full bg-white p-4 rounded-t-lg max-w-[600px] max-h-[800px] overflow-y-scroll `}
           onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
         >
-          <div className="sticky top-8 lg:top-0 flex justify-end bg-transparent">
+          <div className="sticky top-8 md:top-4 flex justify-end bg-transparent">
             <button
               onClick={() => setViewModal(false)}
               className="w-7 h-7 rounded-full bg-[#6da936]/70 z-20 text-white transition-all hover:bg-[#318134] hover:delay-100"
@@ -330,7 +330,7 @@ const Terms: React.FC<TermsProps> = ({ setViewModal, viewModal }) => {
               acceder nuevamente a dichos servicios.
             </p>
             <hr className="w-full h-[2px] bg-gray-200 my-1" />
-            <p className="text-xs md:text-sm pb-12 md:pb-5">
+            <p className="text-xs md:text-sm pb-12 md:pb-9">
               <strong>Fecha de última actualización: junio 2024.</strong>
             </p>
           </div>

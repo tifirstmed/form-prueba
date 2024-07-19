@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Firstmed Perú",
-  description: "Medicina a tu medida: Fórmulas personalizadas para tu bienestar.",
+  description:
+    "Medicina a tu medida: Fórmulas personalizadas para tu bienestar.",
 };
 
 export default function RootLayout({
