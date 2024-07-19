@@ -1,9 +1,9 @@
-import React from "react";
-import Content from "./components/Content/Content";
+import React from 'react';
+import Content from './components/Content/Content';
 
 const page = () => {
   return (
-    <main className="relative flex flex-col justify-center items-center w-full h-dvh">
+    <main className="block w-full sm:h-full lg:h-dvh">
       <Content />
     </main>
   );

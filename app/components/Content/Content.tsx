@@ -1,13 +1,13 @@
-"use client";
-import RegisterForm from "@/app/components/Form/RegisterForm";
-import Image from "next/image";
-import { useState } from "react";
-import Terms from "../Terms/Terms";
-import Tiktok from "../assets/Tiktok";
-import Youtube from "../assets/Youtube";
-import Instagram from "../assets/Instagram";
-import Facebook from "../assets/Facebook";
-import Linkedin from "../assets/Linkedin";
+'use client';
+import RegisterForm from '@/app/components/Form/RegisterForm';
+import Image from 'next/image';
+import { useState } from 'react';
+import Terms from '../Terms/Terms';
+import Tiktok from '../assets/Tiktok';
+import Youtube from '../assets/Youtube';
+import Instagram from '../assets/Instagram';
+import Facebook from '../assets/Facebook';
+import Linkedin from '../assets/Linkedin';
 
 const Content = () => {
   const [viewModal, setViewModal] = useState(false);
@@ -28,8 +28,8 @@ const Content = () => {
             <Image
               src="/images/logo.png"
               alt="Imagen Logo"
-              width={88}
-              height={25.91}
+              width={100}
+              height={31.91}
             />
           </div>
         </div>
@@ -41,7 +41,6 @@ const Content = () => {
           >
             <Tiktok />
           </a>
-
           <a
             className="border border-black rounded-full p-1 lg:p-2"
             href="https://www.youtube.com/@FirstmedPeru"
@@ -75,21 +74,31 @@ const Content = () => {
           </a>
         </div>
       </div>
-      <div className="w-full bg-[#E3E3E2] flex flex-col lg:flex-row h-full justify-center items-center sm:pb-36 md:pb-28 lg:pb-0">
-        <div className="relative w-full h-3/4 md:h-1/2 lg:h-full">
+      <div className="w-full bg-[#E3E3E2] flex flex-col lg:flex-row h-full justify-center items-center">
+        <div className="w-full h-3/4 sm:h-1/2 lg:h-full flex justify-center items-center lg:hidden">
           <Image
             className="object-contain"
             src="/images/image.jpg"
             alt="Imagen Dormilon"
-            fill
+            width={375}
+            height={329}
             priority
           />
         </div>
-        <div className="flex justify-center lg:justify-start items-center w-full h-1/4 md:h-1/2 lg:h-full mt-36 md:mt-24 lg:mt-0">
+        <div className="w-full h-3/4 sm:h-1/2 lg:h-full lg:flex justify-center items-center hidden">
+          <Image
+            className="object-contain"
+            src="/images/image.jpg"
+            alt="Imagen Dormilon"
+            width={621}
+            height={531}
+            priority
+          />
+        </div>
+        <div className="flex justify-center lg:justify-start lg:items-center w-full h-1/4 sm:h-1/2 lg:h-full">
           <RegisterForm viewModal={viewModal} setViewModal={setViewModal} />
         </div>
       </div>
-
       {viewModal && <Terms viewModal={viewModal} setViewModal={setViewModal} />}
     </>
   );

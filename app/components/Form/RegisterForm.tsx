@@ -1,15 +1,15 @@
-"use client";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { userSchema } from "./userScheema";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { initFacebookPixel } from "@/app/utils/facebookPixel";
-import { trackFacebookEvent } from "@/app/utils/facebookPixel";
-import { initGA, logPageView } from "@/app/utils/ga";
-import { logEvent } from "@/app/utils/ga";
-import { RegisterFormProps } from "./RegisterForm.type";
-import CompletedForm from "../CompletedForm/CompletedForm";
+'use client';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { userSchema } from './userScheema';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { initFacebookPixel } from '@/app/utils/facebookPixel';
+import { trackFacebookEvent } from '@/app/utils/facebookPixel';
+import { initGA, logPageView } from '@/app/utils/ga';
+import { logEvent } from '@/app/utils/ga';
+import { RegisterFormProps } from './RegisterForm.type';
+import CompletedForm from '../CompletedForm/CompletedForm';
 
 type User = {
   name: string;
@@ -42,25 +42,25 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       email: data.email,
       description: data.description,
     };
-    trackFacebookEvent("Lead", formattedData);
+    trackFacebookEvent('Lead', formattedData);
     try {
-      const response = await fetch("/api/create-lead", {
-        method: "POST",
+      const response = await fetch('/api/create-lead', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(formattedData),
       });
 
       if (response.status === 200) {
         // Llama al evento 'CompleteRegistration' de Facebook Pixel
-        trackFacebookEvent("CompleteRegistration");
-        logEvent("Form", "Submit");
+        trackFacebookEvent('CompleteRegistration');
+        logEvent('Form', 'Submit');
         setFormCompleted(true);
-        console.log("Datos enviados correctamente a Bitrix24");
+        console.log('Datos enviados correctamente a Bitrix24');
         // Aquí podrías redirigir o mostrar un mensaje de éxito
       } else {
-        console.log("Error al enviar los datos a Bitrix24");
+        console.log('Error al enviar los datos a Bitrix24');
         // Manejar el caso de error según sea necesario
       }
     } catch (error) {
@@ -79,12 +79,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
       isFacebookPixelInitialized = true;
 
       // Envía el evento de vista de contenido
-      trackFacebookEvent("ViewContent");
+      trackFacebookEvent('ViewContent');
     }
 
     // Función para suscribirse a cambios de ruta
     const subscribeToRouteChanges = () => {
-      router.push("/");
+      router.push('/');
     };
 
     // Llama a la función de suscripción al cargar la aplicación
@@ -108,7 +108,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           DORMILON M
         </h1>
       </div>
-      <div className="mt-[28px] md:mt-[50px] flex flex-col w-[318px] sm:w-[540px] ml-[45px] md:ml-[40px] lg:ml-[34px] xl:ml-[40px]">
+      <div className="mt-[28px] md:mt-[50px] flex flex-col w-[318px] sm:w-[540px] mx-auto sm:ml-8 md:ml-9 xl:ml-[40px]">
         <p className="text-[16px] sm:text-[26px] text-[#6CA936] font-normal leading-5 mb-0">
           Deja tus datos y
         </p>
@@ -116,14 +116,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           te contactaremos en breves minutos
         </p>
       </div>
-      <div className="flex flex-col space-y-2 md:space-y-3 ml-[45px] mr-[35px] md:mx-10">
-        <div className="flex flex-col lg:flex-row justify-center w-full mt-[28px] lg:mt-[38px] md:gap-[10px] h-[64px] lg:h-[38px] gap-y-2">
-          <div className="flex flex-col h-[32px] md:h-[38px] w-full">
+      <div className="flex flex-col items-center space-y-2 md:space-y-3 ml-[30px] mr-[30px] md:mx-10">
+        <div className="flex flex-col lg:flex-row justify-center items-center w-full mt-[28px] lg:mt-[38px] md:gap-[10px] h-[64px] lg:h-[38px] gap-y-2">
+          <div className="flex flex-col h-[32px] md:h-[38px] w-[310px] sm:w-full">
             <input
               placeholder="Nombres"
               className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] lg:h-full text-sm md:text-base"
               id="name"
-              {...register("name")}
+              {...register('name')}
             />
             {errors.name && (
               <span className="text-red-500 text-xs">
@@ -131,12 +131,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               </span>
             )}
           </div>
-          <div className="flex flex-col h-[32px] lg:h-[38px] w-full">
+          <div className="flex flex-col h-[32px] lg:h-[38px] w-[310px] sm:w-full">
             <input
               placeholder="Apellidos"
               className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] lg:h-full text-sm md:text-base"
               id="lastname"
-              {...register("lastname")}
+              {...register('lastname')}
             />
             {errors.lastname && (
               <span className="text-red-500 text-xs">
@@ -145,12 +145,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             )}
           </div>
         </div>
-        <div className="flex flex-col h-[32px] lg:h-[38px]">
+        <div className="flex flex-col h-[32px] lg:h-[38px] w-[310px] sm:w-full">
           <input
             placeholder="Celular"
             className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] md:h-full text-sm md:text-base"
             id="phoneNumber"
-            {...register("phoneNumber")}
+            {...register('phoneNumber')}
           />
           {errors.phoneNumber && (
             <span className="text-red-500 text-xs">
@@ -158,24 +158,24 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             </span>
           )}
         </div>
-        <div className="flex flex-col h-[32px] lg:h-[38px]">
+        <div className="flex flex-col h-[32px] lg:h-[38px] w-[310px] sm:w-full">
           <input
             placeholder="Correo electrónico"
             className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] md:h-full text-sm md:text-base"
             id="email"
-            {...register("email")}
+            {...register('email')}
           />
           {errors.email && (
             <span className="text-red-500 text-xs">{errors.email.message}</span>
           )}
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[310px] sm:w-full">
           <textarea
             placeholder="¿Qué desea tratar?"
             rows={5}
             className="border border-black px-2 rounded-[10px] focus:outline-black resize-none text-sm md:text-base"
             id="description"
-            {...register("description")}
+            {...register('description')}
           />
           {errors.description && (
             <span className="text-red-500 text-xs">
@@ -183,7 +183,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             </span>
           )}
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[310px] sm:w-full">
           <label
             className="text-[11px] md:text-sm flex gap-2"
             htmlFor="acceptTerms"
@@ -191,7 +191,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
             <input
               id="acceptTerms"
               type="checkbox"
-              {...register("acceptTerms")}
+              {...register('acceptTerms')}
             />
             <div className="flex">
               <p>Al enviar,</p>
@@ -212,7 +212,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           )}
         </div>
         <button
-          className="w-full h-10 bg-[#6CA936] text-[#FFFFFF] font-semibold rounded-[10px] text-center text-sm md:text-base"
+          className="w-[310px] sm:w-full h-10 bg-[#6CA936] text-[#FFFFFF] font-semibold rounded-[10px] text-center text-sm md:text-base"
           type="submit"
         >
           ENVIAR
