@@ -117,8 +117,8 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         </p>
       </div>
       <div className="flex flex-col items-center space-y-2 md:space-y-3 ml-[30px] mr-[30px] md:mx-10">
-        <div className="flex flex-col lg:flex-row justify-center items-center w-full mt-[28px] lg:mt-[38px] md:gap-[10px] h-[64px] lg:h-[38px] gap-y-2">
-          <div className="flex flex-col h-[32px] md:h-[38px] w-[310px] sm:w-full">
+        <div className="flex flex-col lg:flex-row justify-center items-center w-full mt-[28px] lg:mt-[38px] md:gap-x-[10px] h-[64px] lg:h-[38px] gap-y-2">
+          <div className="flex flex-col h-[32px] md:h-[38px] w-[310px] sm:w-full lg:w-[242px]">
             <input
               placeholder="Nombres"
               className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] lg:h-full text-sm md:text-base"
@@ -131,7 +131,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
               </span>
             )}
           </div>
-          <div className="flex flex-col h-[32px] lg:h-[38px] w-[310px] sm:w-full">
+          <div className="flex flex-col h-[32px] lg:h-[38px] w-[310px] sm:w-full lg:w-[242px]">
             <input
               placeholder="Apellidos"
               className="border border-black px-2 rounded-[10px] focus:outline-black h-[32px] lg:h-full text-sm md:text-base"
